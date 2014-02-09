@@ -19,15 +19,27 @@
 
         public string Pop()
         {
+            if (!IsEmpty() && index == stackWithArray.Length / 4)
+                Shrink();
             if (IsEmpty())
                 return "There are no more elements in the stack";
             else
-                return stackWithArray[index--];
+                return stackWithArray[index--];;
         }
 
         public void Resize()
         {
             string[] copy = new string[stackWithArray.Length * 2];
+            for (int i = 0; i <= index; i++)
+            {
+                copy[i] = stackWithArray[i];
+            }
+            stackWithArray = copy;
+        }
+
+        public void Shrink()
+        {
+            string[] copy = new string[stackWithArray.Length / 2];
             for (int i = 0; i <= index; i++)
             {
                 copy[i] = stackWithArray[i];
